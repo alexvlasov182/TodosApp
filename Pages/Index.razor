@@ -1,9 +1,27 @@
 ﻿@page "/"
 
-<PageTitle>Index</PageTitle>
+<PageTitle>Todos</PageTitle>
 
-<h1>Hello, world!</h1>
+<h1>Todos</h1>
 
-Welcome to your new app.
+<div class="input-group mb-3">
+  <input type="text" class="form-control" placeholder="Enter a to-do description">
+  <button class="btn btn-outline-success">Add</button>
+</div>
 
-<SurveyPrompt Title="How is Blazor working for you?" />
+<ul class="list-group">
+  @foreach (var todo in todos)
+  {
+    <li class="list-group-item d-flex align-items-center justify-content-between">
+    <div>
+      <input id="@todo.Id" type="checkbox" class="form-check-input" checked="@todo.Completed">
+      <label for="@todo.Id" class="form-check-label @(todo.Completed ? "completed" : "")">@todo.Description</label>
+    </div>
+    <input type="button" value="Delete" class="btn btn-outline-danger">
+  </li>
+  }
+</ul>
+
+@code {
+  List<Todo> todos = new() { new Todo {Id = 1, Completed = true, Description = "Buy Beer"} };
+}
