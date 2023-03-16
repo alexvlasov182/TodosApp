@@ -17,7 +17,7 @@
       <input id="@todo.Id" type="checkbox" @onchange="@(e => Update(e.Value.ToBool(), todo))" class="form-check-input" checked="@todo.Completed">
       <label for="@todo.Id" class="form-check-label @(todo.Completed ? "completed" : "")">@todo.Description</label>
     </div>
-    <input type="button" value="Delete" class="btn btn-outline-danger">
+    <input type="button" value="Delete" class="btn btn-outline-danger" @onclick="@(e => Delete(todo))">
   </li>
   }
 </ul>
@@ -25,8 +25,8 @@
 @code {
   List<Todo> todos = new() { new Todo {Id = 1, Completed = true, Description = "Buy Beer 2"} };
 
-  void Update(bool completed, Todo todo)
-  {
-    todo.Completed = completed;
-  }
+  void Update(bool completed, Todo todo) => todo.Completed = completed;
+
+  void Delete(Todo todo) => todos.Remove(todo);
+
 }
