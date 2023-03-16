@@ -1,5 +1,3 @@
-using System;
-
 namespace TodosApp.Classes;
 
 public class Todo
