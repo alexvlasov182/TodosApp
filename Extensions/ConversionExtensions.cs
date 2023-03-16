@@ -1,5 +1,3 @@
-using System;
-
 namespace TodosApp.Extensions;
 
 public static class ConversionExtensions
